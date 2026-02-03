@@ -32,4 +32,7 @@ Jeg arbejder med **skøre** knogler og lægemidlet *alendronat*
 ```{r}
 3*3
 ```
+## Testing for Git
+
+I dag er det solskin
 
