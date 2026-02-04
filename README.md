@@ -6,6 +6,8 @@ Test
 
 # LearningR:
 
+Hi, I'm learning R
+
 TODO: Give a brief description of what your project is about
 
 This project...
