@@ -10,9 +10,13 @@ format: html
 
 library(tidyverse)
 post_meal_data <- read_csv2(here::here("data/post-meal-insulin.csv"))
+
+small_post_meal_data <- select(post_meal_data, id, Age, BMI, Group, auc_pg, auc_ins, glykemi)
 ```
 
+crtl + enter kører koden
 
+Man kan altid tilføje kolonner til sit lille datasæt. Husk blot at køre koden igen. 
 
 
 ## Writing R code
@@ -116,4 +120,43 @@ ggplot(post_meal_data, aes(x = BMI, y = auc_pg)) +
 
 Geom_smooth tilføjer tendenslinje
 
-Style active file gør selve koden flottere
+Style active file gør selve koden flottere. 
+scale_ og theme_ kan gør plots flottere? 
+
+GitHub giver alle adgang til dine data. OBS sensitive data
+
+Man kan bruge pilene til at huske tidligere kommandoer 
+
+saperlipopette er en pakke, der fungerer som en slags escape room, hvor man kan øve sig i GitHub. 
+
+## Selecting data 
+
+```{r}
+select(post_meal_data, Age)
+
+select(post_meal_data, Age, BMI, Weight)
+
+select(post_meal_data, -Group)
+
+select(post_meal_data, starts_with("PG"))
+
+select(post_meal_data, ends_with("DXA"))
+
+select(post_meal_data, contains("0"))
+```
+Select ændrer ikke data, men blot viser det. 
+
+Start_with tager alle rækker der starter med PG
+
+## Renaming columns
+
+```{r}
+small_post_meal_data %>%
+  rename(
+    auc_glucose = auc_pg,
+    auc_insulin = auc_ins
+  )
+```
+
+pipe funktion: %>% er det samme som |> 
+Rename: nyt navn = gammelt navn
