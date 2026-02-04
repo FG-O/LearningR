@@ -5,8 +5,8 @@ format: html
 ---
 
 ```{r setup}
-#| message: false 
-#| warning: false 
+#| message: false
+#| warning: false
 
 library(tidyverse)
 post_meal_data <- read_csv2(here::here("data/post-meal-insulin.csv"))
@@ -20,7 +20,7 @@ post_meal_data <- read_csv2(here::here("data/post-meal-insulin.csv"))
 2+2 
 
 ```{r}
-2+2
+2 + 2
 ```
 
 
@@ -36,7 +36,7 @@ Jeg arbejder med **skøre** knogler og lægemidlet *alendronat*
 
 
 ```{r}
-3*3
+3 * 3
 ```
 ## Testing for Git
 
@@ -55,7 +55,6 @@ glimpse(post_meal_data)
 #| label: fig-bmi-histo
 ggplot(post_meal_data, aes(x = BMI)) +
   geom_histogram()
-
 ```
 Ved at tilføje Label kan man referere til figuren, f.eks.: See @fig-bmi-histo
 
@@ -77,8 +76,10 @@ Ved kontinuerlige variabler kan man plotte to variable.
 fill kan ikke bruge tal, og i dette tilfælde er glykemi kodet som 0 eller 1, som talværdier. 
 
 ```{r}
-ggplot(post_meal_data, aes(x=Group, fill = 
-as.character(glykemi))) + 
+ggplot(post_meal_data, aes(
+  x = Group, fill =
+    as.character(glykemi)
+)) +
   geom_bar(position = position_dodge())
 ```
 
@@ -91,14 +92,28 @@ layout-ncol sætter dem ved siden af hinanden, kolonner
 
 ```{r fig-bmi-glycemia}
 #| fig-cap: "BMI and glycemia, side by side"
-#| fig-subcap: 
+#| fig-subcap:
 #|  - "Distribution of BMI"
 #|  - "Number of those with glycemia"
 #| layout-ncol: 2
 
-ggplot(post_meal_data, aes(x=BMI)) +
+ggplot(post_meal_data, aes(x = BMI)) +
   geom_histogram()
-ggplot(post_meal_data, aes(x=glykemi)) + 
+ggplot(post_meal_data, aes(x = glykemi)) +
   geom_bar()
 ```
+barplots, søjlediagrammer, fungerer ikke for kontinuerlige variable. Kun til kategoriske. 
 
+## Plotting two continuous variables
+
+```{r}
+#| fig-cap: "Scatterplot of BMI and the area under the curve for glucose"
+#| label: fig-bmi-auc-pg
+ggplot(post_meal_data, aes(x = BMI, y = auc_pg)) +
+  geom_point() +
+  geom_smooth()
+```
+
+Geom_smooth tilføjer tendenslinje
+
+Style active file gør selve koden flottere
