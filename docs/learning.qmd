@@ -63,9 +63,42 @@ Ved at tilføje Label kan man referere til figuren, f.eks.: See @fig-bmi-histo
 
 ```{r}
 #| fig-cap: "Glykemi"
-#| label: fig-group-bar
+#| label: fig-glykemi-bar
 ggplot(post_meal_data, aes(x = glykemi)) +
   geom_bar()
 ```
 
-See @fig-group-bar above for a cool plot!
+See @fig-glykemi-bar above for a cool plot!
+
+Ved kontinuerlige variabler kan man plotte to variable.
+
+## Plot two discrete variables
+
+fill kan ikke bruge tal, og i dette tilfælde er glykemi kodet som 0 eller 1, som talværdier. 
+
+```{r}
+ggplot(post_meal_data, aes(x=Group, fill = 
+as.character(glykemi))) + 
+  geom_bar(position = position_dodge())
+```
+
+Position position_dodge sætter grupperne ved siden af hinanden.
+
+## Side by side plots 
+
+Navngiver chunk for overblik 
+layout-ncol sætter dem ved siden af hinanden, kolonner 
+
+```{r fig-bmi-glycemia}
+#| fig-cap: "BMI and glycemia, side by side"
+#| fig-subcap: 
+#|  - "Distribution of BMI"
+#|  - "Number of those with glycemia"
+#| layout-ncol: 2
+
+ggplot(post_meal_data, aes(x=BMI)) +
+  geom_histogram()
+ggplot(post_meal_data, aes(x=glykemi)) + 
+  geom_bar()
+```
+
