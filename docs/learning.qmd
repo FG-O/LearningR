@@ -58,3 +58,14 @@ ggplot(post_meal_data, aes(x = BMI)) +
 
 ```
 Ved at tilføje Label kan man referere til figuren, f.eks.: See @fig-bmi-histo
+
+## Exercise: discrete plots
+
+```{r}
+#| fig-cap: "Glykemi"
+#| label: fig-group-bar
+ggplot(post_meal_data, aes(x = glykemi)) +
+  geom_bar()
+```
+
+See @fig-group-bar above for a cool plot!
