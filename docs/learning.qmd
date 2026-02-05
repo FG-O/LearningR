@@ -20,12 +20,19 @@ tidier_post_meal_data <- small_post_meal_data %>%
   ) %>%
   filter(glykemi == 0) %>%
   select(-glykemi)
+
+tidied_post_meal_data <- tidier_post_meal_data %>%
+  mutate(
+    insulin_glucose_ratio = auc_insulin / auc_glucose,
+    Group = if_else(Group == "CTR", "Control", "First-degree-relative")
+  )
 ```
 
 crtl + enter kører koden
 
 Man kan altid tilføje kolonner til sit lille datasæt. Husk blot at køre koden igen. 
 
+Husk at få modificerede datasæt i setup chunk, for at sikre at fremtidige koder fungerer på det modificerede datasæt
 
 ## Writing R code
 
@@ -219,3 +226,21 @@ small_post_meal_data %>%
 Når filter bruges: Dobbelttjek at det du får, er det du ønsker. Vær opmærksom på missing values. 
 
 , betyder AND
+
+## Modifying data ¨
+
+rename virker kun på columns
+if_else (condition == true condition, replacement, false (ændre hvad du finder til det her)
+
+```{r}
+tidier_post_meal_data %>%
+  mutate(insulin_glucose_ratio = auc_insulin / auc_glucose)
+
+tidier_post_meal_data %>%
+  mutate(
+    insulin_glucose_ratio = auc_insulin / auc_glucose,
+    Group = if_else(Group == "CTR", "Control", "First-degree-relative")
+  )
+```
+
+Style - render - commit 
